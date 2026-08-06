@@ -47,7 +47,7 @@ dental-website/
 1. Clone the repository to your local machine using the command, preferably to Visual Studio Code, using the following command:
 
 ```bash
-git clone https://github.com/mcsmith1219/dental-lesion-trainer.git
+git clone https://github.com/mcsmith1219/Dental-Lesion-Trainer-Website.git
 ```
 
 2. Download node.js and npm (Node Package Manager) from the official website: <https://nodejs.org/en/download/> and follow the installation instructions for your operating system.
