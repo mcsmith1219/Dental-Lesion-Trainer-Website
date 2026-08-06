@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cases</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header class="top-bar">
+        <h1>Dental Lesion Trainer</h1>
+        <ul class="top-bar-auth">
+            <li><a href="./login.html">Login</a></li>
+            <li><a href="./signup.html">Sign Up</a></li>
+        </ul>
+    </header>
+    <nav class="top-nav">
+        <ul>
+            <li><a href="./home.html">Home</a></li>
+            <li><a href="./cases.html">Cases</a></li>
+            <li><a href="./resources.html">Resources</a></li>
+        </ul>
+    </nav>
+
+    <main class="page-shell" id="appShell">
+        <section class="card cases-card">
+            <div class="cases-layout">
+                <aside class="unit-sidebar">
+                    <h3>Units</h3>
+                    <ul class="unit-list" id="unitList">
+                        <li><button class="unit-btn active" data-unit="all" type="button">All Units</button></li>
+                        <li><button class="unit-btn" data-unit="1" type="button">Unit 1</button></li>
+                        <li><button class="unit-btn" data-unit="2" type="button">Unit 2</button></li>
+                        <li><button class="unit-btn" data-unit="3" type="button">Unit 3</button></li>
+                        <li><button class="unit-btn" data-unit="4" type="button">Unit 4</button></li>
+                        <li><button class="unit-btn" data-unit="5" type="button">Unit 5</button></li>
+                    </ul>
+                </aside>
+
+                <div class="cases-main">
+                    <h2>Available Cases</h2>
+                    <p class="subtext">Click on a case to start training</p>
+                    <ul class="cases-list" id="casesList">
+                        <li data-unit="1"><a href="./index.html">Unit 1: Periapical Lesion</a></li>
+                        <li data-unit="2"><a href="./index.html">Unit 2: Carious Lesion</a></li>
+                        <li data-unit="3"><a href="./index.html">Unit 3: Periodontal Lesion</a></li>
+                        <li data-unit="4"><a href="./index.html">Unit 4: Cystic Lesion</a></li>
+                        <li data-unit="5"><a href="./index.html">Unit 5: Traumatic Lesion</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.querySelectorAll('.unit-btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('.unit-btn').forEach(function (b) {
+                    b.classList.remove('active');
+                });
+                btn.classList.add('active');
+
+                const unit = btn.dataset.unit;
+                document.querySelectorAll('#casesList li').forEach(function (li) {
+                    li.style.display = (unit === 'all' || li.dataset.unit === unit) ? '' : 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

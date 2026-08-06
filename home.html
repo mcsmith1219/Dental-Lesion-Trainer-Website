@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <header class="top-bar">
+            <h1>Dental Lesion Trainer</h1>
+            <ul class="top-bar-auth">
+                <li><a href="./login.html">Login</a></li>
+                <li><a href="./signup.html">Sign Up</a></li>
+            </ul>
+        </header>
+
+        <nav class="top-nav">
+            <ul>
+                <li><a href="./home.html">Home</a></li>
+                <li><a href="./cases.html">Cases</a></li>
+                <li><a href="./resources.html">Resources</a></li>
+            </ul>
+        </nav>
+
+        <main class="app-shell region-step" id="appShell">
+            <section class="card home-card">
+                <h2>Welcome to the Dental Lesion Trainer</h2>
+                <p class="subtext">ECU's interactive tool for mastering dental lesion identification and diagnosis.</p>
+                <p>Get started by logging in <a href="./login.html">here</a> or create an <a href="./signup.html">account here</a> to get started.</p>
+                <div class="viewer" id="xrayViewer" style="height: 400px; display: flex; justify-content: center; align-items: center; background-color: #ffffff; border: none">
+                    <img src="./images/train_0.png" alt="Dental Lesion Trainer" class="home-image"/>
+                </div>
+            </section>
+        </main>
+
+    </body>
+</html>

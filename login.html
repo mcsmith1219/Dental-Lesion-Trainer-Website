@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login – Dental Lesion Trainer</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <header class="top-bar">
+            <h1>Dental Lesion Trainer</h1>
+            <ul class="top-bar-auth">
+                <li><a href="./login.html">Login</a></li>
+                <li><a href="./signup.html">Sign Up</a></li>
+            </ul>
+        </header>
+        <nav class="top-nav">
+            <ul>
+                <li><a href="./home.html">Home</a></li>
+                <li><a href="./cases.html">Cases</a></li>
+                <li><a href="./resources.html">Resources</a></li>
+            </ul>
+        </nav>
+        <main class="app-shell region-step">
+            <section class="card">
+                <h2 style="margin-bottom: 18px;">Login</h2>
+                <form id="loginForm" onsubmit="handleLogin(event)">
+                    <div style="display:grid; gap:12px;">
+                        <p id="loginError" class="form-error" role="alert"></p>
+
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" required style="padding:10px 12px; border-radius:8px; border:1px solid #d1d5db; font-family:inherit; font-size:0.95rem;">
+
+                        <div class="field-label-row">
+                            <label for="password">Password</label>
+                            <span class="info-tooltip">
+                                <button type="button" class="info-icon" aria-label="Password requirements">?</button>
+                                <span class="info-tooltip-text">Password must be at least 8 characters and include an uppercase letter, a lowercase letter, and a number.</span>
+                            </span>
+                        </div>
+                        <input type="password" id="password" name="password" required style="padding:10px 12px; border-radius:8px; border:1px solid #d1d5db; font-family:inherit; font-size:0.95rem;">
+
+                        <div class="forgot-password-row">
+                            <a href="./password-reset.html">Forgot Password?</a>
+                        </div>
+
+                        <button type="submit" class="primary" style="margin-top:6px;">Login</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+
+        <script src="auth.js"></script>
+        <script>
+            document.querySelectorAll('.info-icon').forEach(function (icon) {
+                icon.addEventListener('click', function (event) {
+                    event.stopPropagation();
+                    const tooltip = icon.closest('.info-tooltip');
+                    const wasOpen = tooltip.classList.contains('open');
+                    document.querySelectorAll('.info-tooltip.open').forEach(function (t) {
+                        t.classList.remove('open');
+                    });
+                    if (!wasOpen) {
+                        tooltip.classList.add('open');
+                    }
+                });
+            });
+
+            document.addEventListener('click', function () {
+                document.querySelectorAll('.info-tooltip.open').forEach(function (t) {
+                    t.classList.remove('open');
+                });
+            });
+
+            function handleLogin(event) {
+                event.preventDefault();
+
+                const username = document.getElementById('username').value.trim();
+                const password = document.getElementById('password').value;
+                const errorBox = document.getElementById('loginError');
+
+                errorBox.textContent = '';
+                errorBox.classList.remove('visible');
+
+                const user = findUserByUsername(username);
+
+                if (!user) {
+                    errorBox.textContent = 'No account found with that username.';
+                    errorBox.classList.add('visible');
+                    return;
+                }
+
+                if (user.password !== password) {
+                    errorBox.textContent = 'Your password is incorrect. Please try again.';
+                    errorBox.classList.add('visible');
+                    return;
+                }
+
+                window.location.href = './home.html';
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up – Dental Lesion Trainer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header class="top-bar">
+        <h1>Dental Lesion Trainer</h1>
+        <ul class="top-bar-auth">
+            <li><a href="./login.html">Login</a></li>
+            <li><a href="./signup.html">Sign Up</a></li>
+        </ul>
+    </header>
+    <nav class="top-nav">
+        <ul>
+            <li><a href="./home.html">Home</a></li>
+            <li><a href="./cases.html">Cases</a></li>
+            <li><a href="./resources.html">Resources</a></li>
+        </ul>
+    </nav>
+    <main class="app-shell region-step">
+        <section class="card">
+            <h2 style="margin-bottom: 18px;">Sign Up</h2>
+            <form action="/signup" method="post" onsubmit="validateForm(event)">
+                <div style="display:grid; gap:12px;">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required style="padding:10px 12px; border-radius:8px; border:1px solid #d1d5db; font-family:inherit; font-size:0.95rem;">
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required style="padding:10px 12px; border-radius:8px; border:1px solid #d1d5db; font-family:inherit; font-size:0.95rem;">
+
+                    <div class="field-label-row">
+                        <label for="password">Password</label>
+                        <span class="info-tooltip">
+                            <button type="button" class="info-icon" aria-label="Password requirements">?</button>
+                            <span class="info-tooltip-text">Password must be at least 8 characters and include an uppercase letter, a lowercase letter, and a number.</span>
+                        </span>
+                    </div>
+                    <input type="password" id="password" name="password" required oninput="checkPasswordStrength()" style="padding:10px 12px; border-radius:8px; border:1px solid #d1d5db; font-family:inherit; font-size:0.95rem;">
+                    <p id="passwordStrengthMessage" class="form-hint-text" style="color:var(--muted);"></p>
+
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required oninput="checkPasswordMatch()" style="padding:10px 12px; border-radius:8px; border:1px solid #d1d5db; font-family:inherit; font-size:0.95rem;">
+                    <p id="passwordMatchMessage" class="form-hint-text" style="color:var(--danger-text);"></p>
+
+                    <div class="field-label-row">
+                        <label for="accessCode">Access Code</label>
+                        <span class="info-tooltip">
+                            <button type="button" class="info-icon" aria-label="Access code info">?</button>
+                            <span class="info-tooltip-text">You should receive this code from your instructor.</span>
+                        </span>
+                    </div>
+                    <input type="text" id="accessCode" name="accessCode" required style="padding:10px 12px; border-radius:8px; border:1px solid #d1d5db; font-family:inherit; font-size:0.95rem;">
+
+                    <button type="submit" class="primary" style="margin-top:6px;">Sign Up</button>
+                </div>
+            </form>
+        </section>
+    </main>
+    <script>
+        document.querySelectorAll('.info-icon').forEach(function (icon) {
+            icon.addEventListener('click', function (event) {
+                event.stopPropagation();
+                const tooltip = icon.closest('.info-tooltip');
+                const wasOpen = tooltip.classList.contains('open');
+                document.querySelectorAll('.info-tooltip.open').forEach(function (t) {
+                    t.classList.remove('open');
+                });
+                if (!wasOpen) {
+                    tooltip.classList.add('open');
+                }
+            });
+        });
+
+        document.addEventListener('click', function () {
+            document.querySelectorAll('.info-tooltip.open').forEach(function (t) {
+                t.classList.remove('open');
+            });
+        });
+
+        function checkPasswordMatch() {
+            const pw = document.getElementById('password').value;
+            const cpw = document.getElementById('confirmPassword').value;
+            const msg = document.getElementById('passwordMatchMessage');
+            msg.textContent = cpw && pw !== cpw ? 'Passwords do not match.' : '';
+        }
+
+        function getPasswordStrength(pw) {
+            if (!pw) {
+                return '';
+            }
+
+            const hasLower = /[a-z]/.test(pw);
+            const hasUpper = /[A-Z]/.test(pw);
+            const hasNumber = /[0-9]/.test(pw);
+            const hasSpecial = /[^A-Za-z0-9]/.test(pw);
+            const lengthOk = pw.length >= 8;
+
+            if (!lengthOk) {
+                return 'Too short (min 8 characters)';
+            }
+
+            const score = [hasLower, hasUpper, hasNumber, hasSpecial].filter(Boolean).length;
+
+            if (score <= 1) {
+                return 'Weak';
+            }
+            if (score <= 2) {
+                return 'Medium';
+            }
+            return 'Strong';
+        }
+
+        function checkPasswordStrength() {
+            const pw = document.getElementById('password').value;
+            const msg = document.getElementById('passwordStrengthMessage');
+            const strength = getPasswordStrength(pw);
+            msg.textContent = strength ? `Password Strength: ${strength}` : '';
+        }
+
+        function validateForm(event) {
+            if (!checkAccessCode()) {
+                event.preventDefault();
+            }
+        }
+
+        function checkAccessCode() {
+            const accessCode = document.getElementById('accessCode').value;
+            const validAccessCode = ''; // Placeholder Access Code
+            if (accessCode !== validAccessCode) {
+                alert('Invalid access code. Please contact the administrator for the correct code.');
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>
