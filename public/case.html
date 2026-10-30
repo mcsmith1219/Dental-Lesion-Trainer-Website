@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!-- X-ray case exercise page. -->
+<html lang="en">
+  <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Case – IDentiFind</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/case.css" />
+  </head>
+  <body>
+    <header class="top-bar">
+      <h1>IDentiFind</h1>
+      <ul class="top-bar-auth">
+        <li><a href="./login.html">Login</a></li>
+        <li><a href="./signup.html">Sign Up</a></li>
+      </ul>
+    </header>
+
+    <nav class="top-nav">
+      <ul>
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./dashboard.html">Dashboard</a></li>
+        <li><a href="./resources.html">Resources</a></li>
+      </ul>
+    </nav>
+
+    <main class="app-shell region-step" id="appShell">
+      <section class="card xray-card">
+        <div class="case-header">
+          <div class="case-heading">
+            <h2 id="caseTitle">Question 1, Part 1: Locate Lesion</h2>
+            <p class="subtext" id="partOneSubtext">Drag to draw a box around the area on the x-ray where you think the most likely lesion is located</p>
+          </div>
+          <span class="badge" id="difficultyBadge">Beginner</span>
+        </div>
+
+        <div class="viewer" id="xrayViewer">
+          <img id="xrayImage" alt="Dental x-ray training case" src="images/train_0.png" />
+          <div class="correct-box" id="correctBox"></div>
+          <div class="viewer-controls" id="viewerControls">
+            <button class="viewer-tool" id="zoomToggleBtn" type="button" aria-label="Enlarge x-ray" title="Enlarge x-ray">
+              <img id="zoomToggleIcon" src="images/icons/enlarge-icon.png" alt="" />
+            </button>
+            <div class="viewer-zoom-tools" id="zoomTools">
+              <button class="viewer-tool" id="zoomCheckBtn" type="button" aria-label="Check highlight" title="Check highlight">
+                <img src="images/icons/check-highlight-icon.png" alt="" />
+              </button>
+              <button class="viewer-tool" id="zoomClearBtn" type="button" aria-label="Clear box and ruler markings" title="Clear box and ruler markings">
+                <img src="images/icons/erase-icon.png" alt="" />
+              </button>
+              <button class="viewer-tool" id="zoomRulerBtn" type="button" aria-label="Ruler" title="Ruler" aria-pressed="false">
+                <img src="images/icons/ruler-icon.png" alt="" />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="tool-row">
+          <div class="left-tools">
+            <button class="primary" id="checkRegionBtn" type="button" onclick="checkRegion()">Check Highlight</button>
+            <button class="secondary" id="clearHighlightBtn" type="button" onclick="clearSelection()">Clear Highlight</button>
+            <button class="secondary" id="rulerBtn" type="button" onclick="toggleRuler()">Ruler</button>
+          </div>
+          <button class="danger" id="showRegionBtn" type="button" onclick="showCorrectRegion()">Show Correct Region</button>
+        </div>
+
+        <div class="hints part-one-hints">
+          <div class="hints-heading inline-heading">
+            <div>
+              <h4>Hints</h4>
+              <p class="hint-counter" id="hintsCounter">Click to reveal hints</p>
+            </div>
+            <button class="secondary hint-button" id="revealHintBtn" type="button" onclick="revealHint()">Reveal Hint</button>
+          </div>
+          <ul id="hintsList"></ul>
+        </div>
+      </section>
+
+      <aside class="card question-card" id="questionCard" aria-hidden="true">
+        <h3 id="questionTitle">Question 1, Part 2: Identify the Lesion</h3>
+        <p class="prompt" id="questionPrompt">Now, identify the lesion.</p>
+
+        <div class="answers" id="answers"></div>
+
+        <div class="answer-actions">
+          <button class="primary" id="submitAnswerBtn" type="button" onclick="submitAnswer()">Submit Answer</button>
+          <button class="danger next-btn" id="nextCaseBtn" type="button" onclick="nextCase()">Next Case</button>
+        </div>
+
+        <div class="feedback" id="feedbackBox"></div>
+
+        <div class="ai-sector" id="aiSector" aria-live="polite">
+          <h4>Ask the AI</h4>
+          <div class="chat-messages" id="chatMessages"></div>
+          <div class="chat-input-row">
+            <input type="text" id="chatInput" placeholder="Ask a question about this case..." autocomplete="off" />
+            <button class="primary" id="chatSendBtn" type="button">Send</button>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <div class="zoom-overlay" id="zoomOverlay" role="dialog" aria-modal="true" aria-label="Enlarged x-ray" hidden>
+      <div class="zoom-stage" id="zoomStage">
+        <p class="zoom-caption" id="zoomCaption" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <script src="js/shared/auth.js"></script>
+    <script src="js/shared/progress.js"></script>
+    <script src="js/shared/result-popup.js"></script>
+    <script src="js/case/case-data.js"></script>
+    <script src="js/case/case-state.js"></script>
+    <script src="js/case/xray-tools.js"></script>
+    <script src="js/case/zoom.js"></script>
+    <script src="js/case/case-flow.js"></script>
+    <script src="js/case/chat.js"></script>
+    <script src="js/case/main.js"></script>
+  </body>
+</html>

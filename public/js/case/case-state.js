@@ -1,0 +1,61 @@
+// Shared case page state and element lookups.
+let currentCaseIndex = 0;
+let selectedAnswer = null;
+let selectionRegion = null;
+let selectionBoxElement = null;
+let isDraggingSelection = false;
+let dragStartPoint = null;
+let revealedHintCount = 0;
+let currentHints = [];
+let incorrectRegionGuesses = 0;
+let incorrectAnswerGuesses = 0;
+let questionUnlocked = false;
+let partOneWasCorrect = false;
+let partTwoWasCorrect = false;
+let partTwoComplete = false;
+const activeTestUnit = Number(new URLSearchParams(window.location.search).get("testUnit")) || null;
+const activePracticeMode = (function () {
+  const value = new URLSearchParams(window.location.search).get("practice");
+  return value === "all" || /^[1-5]$/.test(value || "") ? value : null;
+})();
+let progressSavePromise = null;
+
+const appShell = document.getElementById("appShell");
+const questionCard = document.getElementById("questionCard");
+const xrayViewer = document.getElementById("xrayViewer");
+const image = document.getElementById("xrayImage");
+const correctBox = document.getElementById("correctBox");
+const answersContainer = document.getElementById("answers");
+const feedbackBox = document.getElementById("feedbackBox");
+const hintsList = document.getElementById("hintsList");
+const hintsCounter = document.getElementById("hintsCounter");
+const caseTitle = document.getElementById("caseTitle");
+const partOneSubtext = document.getElementById("partOneSubtext");
+const questionTitle = document.getElementById("questionTitle");
+const questionPrompt = document.getElementById("questionPrompt");
+const difficultyBadge = document.getElementById("difficultyBadge");
+const showRegionBtn = document.getElementById("showRegionBtn");
+const checkRegionBtn = document.getElementById("checkRegionBtn");
+const submitAnswerBtn = document.getElementById("submitAnswerBtn");
+const nextCaseBtn = document.getElementById("nextCaseBtn");
+const chatMessages = document.getElementById("chatMessages");
+const chatInput = document.getElementById("chatInput");
+const chatSendBtn = document.getElementById("chatSendBtn");
+const clearHighlightBtn = document.getElementById("clearHighlightBtn");
+const revealHintBtn = document.getElementById("revealHintBtn");
+const rulerBtn = document.getElementById("rulerBtn");
+const viewerControls = document.getElementById("viewerControls");
+const zoomToggleBtn = document.getElementById("zoomToggleBtn");
+const zoomToggleIcon = document.getElementById("zoomToggleIcon");
+const zoomCheckBtn = document.getElementById("zoomCheckBtn");
+const zoomClearBtn = document.getElementById("zoomClearBtn");
+const zoomRulerBtn = document.getElementById("zoomRulerBtn");
+const zoomOverlay = document.getElementById("zoomOverlay");
+const zoomStage = document.getElementById("zoomStage");
+const zoomCaption = document.getElementById("zoomCaption");
+
+const PART_ONE_INSTRUCTIONS = "Drag to draw a box around the area on the x-ray where you think the most likely lesion is located";
+
+let rulerActive = false;
+let rulerPoints = [];
+let rulerElements = [];

@@ -1,0 +1,28 @@
+{
+  "name": "identifind",
+  "version": "1.0.0",
+  "description": "A prototype web application built for ECU's Dental School to help dental students practice identifying lesions in dental x-rays. Students are shown real-world x-ray images and work through a two-part exercise: first locating the lesion on the image, then identifying what type of lesion it is.",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "init-db": "node server/db/init-db.js",
+    "import-data": "node server/db/import-csv.js",
+    "view-tables": "node server/db/view-tables.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcsmith1219/Dental-Lesion-Trainer-Website.git"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/mcsmith1219/Dental-Lesion-Trainer-Website/issues"
+  },
+  "homepage": "https://github.com/mcsmith1219/Dental-Lesion-Trainer-Website#readme",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "pg": "^8.23.0"
+  }
+}

@@ -1,0 +1,30 @@
+/* Styles for the resources page. */
+.resources-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.contacts-list {
+  margin-top: 12px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contacts-list li {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.contacts-list a {
+  color: var(--teal-dark);
+}
+
+@media (max-width: 760px) {
+  .resources-layout {
+    grid-template-columns: 1fr;
+  }
+}

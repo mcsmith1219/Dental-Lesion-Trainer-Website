@@ -1,0 +1,7 @@
+username, password, email, role, user_id
+demo0, password, demo0@demo.com, admin, 00000
+demo1, password, demo1@demo.com, teacher, 00001
+demo2, password, demo2@demo.com, student, 00002
+demo3, password, demo3@demo.com, student, 00003
+demo4, password, demo4@demo.com, student, 00004
+demo5, password, demo5@demo.com, student, 00005

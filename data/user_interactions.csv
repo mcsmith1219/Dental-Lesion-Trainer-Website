@@ -1,0 +1,20 @@
+user_id, session_id, sequence, case_id, question_id, kc_id, student_response, correct, time_sec, hint_used, time_before_first_hint, attempts, answer_change_count, iou_score, timestamp
+00001,live-1,1789654143971,xray_00001,xray_00001,Periapical Lesion,correct,true,,false,,1,0,,2026-09-17T14:09:03.971Z
+00001,live-1,1789654160312,xray_00002,xray_00002,Periapical Lesion,correct,true,,false,,1,0,,2026-09-17T14:09:20.312Z
+00001,live-1,1789654165435,xray_00003,xray_00003,Periapical Lesion,correct,true,,false,,1,0,,2026-09-17T14:09:25.435Z
+00001,live-1,1789654189177,xray_00004,xray_00004,Periapical Lesion,correct,true,,false,,1,0,,2026-09-17T14:09:49.177Z
+00001,live-1,1789654197100,xray_00005,xray_00005,Periapical Lesion,correct,true,,false,,1,0,,2026-09-17T14:09:57.100Z
+00001,live-1,1789654261119,xray_00006,xray_00006,Periapical Lesion,correct,true,,false,,1,0,,2026-09-17T14:11:01.119Z
+00001,live-1,1789654322615,xray_00007,xray_00007,Periapical Lesion,correct,true,,false,,1,0,,2026-09-17T14:12:02.615Z
+00001,live-1,1789654369673,xray_00008,xray_00008,Periapical Lesion,correct,true,,false,,1,0,,2026-09-17T14:12:49.673Z
+00001,live-1,1789654374197,xray_00009,xray_00009,Periapical Lesion,correct,true,,false,,1,0,,2026-09-17T14:12:54.197Z
+00001,live-1,1789654380125,xray_00010,xray_00010,Periapical Lesion,correct,true,,false,,1,0,,2026-09-17T14:13:00.125Z
+00001,live-1,1790863779703,xray_00012,xray_00012,Periapical Lesion,correct,true,,false,,1,0,,2026-10-01T14:09:39.703Z
+00001,live-1,1790863797028,xray_00011,xray_00011,Periapical Lesion,correct,true,,false,,1,0,,2026-10-01T14:09:57.028Z
+00001,live-1,1790863828777,xray_00013,xray_00013,Periapical Lesion,correct,true,,false,,1,0,,2026-10-01T14:10:28.777Z
+00001,live-1,1791467579388,xray_00001,xray_00001,Periapical Lesion,correct,true,,false,,1,0,,2026-10-08T13:52:59.388Z
+00001,live-1,1791468245606,xray_00001,xray_00001,Periapical Lesion,correct,true,,false,,1,0,,2026-10-08T14:04:05.606Z
+00001,live-1,1791468297011,xray_00021,xray_00021,Carious Lesion,correct,true,,false,,1,0,,2026-10-08T14:04:57.011Z
+00001,live-1,1791468302142,xray_00022,xray_00022,Carious Lesion,correct,true,,false,,1,0,,2026-10-08T14:05:02.142Z
+00001,live-1,1791471243998,xray_00001,xray_00001,Periapical Lesion,incorrect,false,,false,,1,0,,2026-10-08T14:54:03.998Z
+00001,live-1,1792956297852,xray_00001,xray_00001,Periapical Lesion,correct,true,,false,,1,0,,2026-10-25T19:24:57.852Z

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!-- Tutorial lesson page with video and question. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutorial Lesson | IDentiFind</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/tutorial.css" />
+</head>
+<body>
+  <header class="top-bar">
+    <h1>IDentiFind</h1>
+    <ul class="top-bar-auth">
+      <li><a href="./login.html">Login</a></li>
+      <li><a href="./signup.html">Sign Up</a></li>
+    </ul>
+  </header>
+
+  <nav class="top-nav">
+    <ul>
+      <li><a href="./index.html">Home</a></li>
+      <li><a href="./dashboard.html">Dashboard</a></li>
+      <li><a href="./resources.html">Resources</a></li>
+    </ul>
+  </nav>
+
+  <main class="page-shell tutorial-lesson-page">
+    <section class="card tutorial-card">
+      <h2 id="lessonTitle">Tutorial Lesson</h2>
+      <p class="subtext" id="lessonDescription">Watch the video to unlock the question.</p>
+
+      <div class="tutorial-video">
+        <div id="lessonVideo" aria-label="Tutorial video"></div>
+      </div>
+      <p class="video-status" id="videoStatus">The question will appear when the video ends.</p>
+
+      <section class="lesson-question" id="lessonQuestion" hidden>
+        <h3 id="questionPrompt">Question</h3>
+        <form id="questionForm">
+          <div class="lesson-options" id="lessonOptions"></div>
+          <button class="primary" type="submit">Check Answer</button>
+        </form>
+        <p class="lesson-feedback" id="lessonFeedback" aria-live="polite"></p>
+      </section>
+    </section>
+  </main>
+
+  <script src="js/shared/auth.js"></script>
+  <script src="js/shared/result-popup.js"></script>
+  <script src="js/tutorial-lesson.js"></script>
+</body>
+</html>

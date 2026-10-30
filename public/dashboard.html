@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!-- Dashboard listing units, cases, practice and mastery. -->
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard – IDentiFind</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+    <header class="top-bar">
+        <h1>IDentiFind</h1>
+        <ul class="top-bar-auth">
+            <li><a href="./login.html">Login</a></li>
+            <li><a href="./signup.html">Sign Up</a></li>
+        </ul>
+    </header>
+    <nav class="top-nav">
+        <ul>
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./dashboard.html">Dashboard</a></li>
+            <li><a href="./resources.html">Resources</a></li>
+        </ul>
+    </nav>
+
+    <main class="page-shell cases-shell" id="appShell">
+        <div class="cases-page-row">
+            <section class="card cases-card">
+                <div class="cases-layout">
+                    <aside class="unit-sidebar">
+                    <h3>Units</h3>
+                    <ul class="unit-list" id="unitList">
+                        <li><button class="unit-btn active" data-unit="all" type="button">All Units</button></li>
+                        <li><button class="unit-btn" data-unit="0" type="button">Tutorial</button></li>
+                        <li><button class="unit-btn" data-unit="1" type="button">Unit 1</button></li>
+                        <li><button class="unit-btn" data-unit="2" type="button">Unit 2</button></li>
+                        <li><button class="unit-btn" data-unit="3" type="button">Unit 3</button></li>
+                        <li><button class="unit-btn" data-unit="4" type="button">Unit 4</button></li>
+                        <li><button class="unit-btn" data-unit="5" type="button">Unit 5</button></li>
+                    </ul>
+                </aside>
+
+                <div class="cases-main">
+                    <h2>Available Cases</h2>
+                    <p class="subtext">Click on a case to start training</p>
+                    <ul class="cases-list" id="casesList">
+                        <li data-unit="0" class="unit-divider unit-title"><a href="#">Tutorial</a></li>
+                            <li data-unit="0"><a href="./tutorial.html?lesson=introduction">Introduction</a></li>
+                            <li data-unit="0"><a href="./tutorial.html?lesson=tools">Tools</a></li>
+                            <li data-unit="0"><a href="./tutorial.html?lesson=practice">Practice</a></li>
+                            <li data-unit="0"><a href="./tutorial.html?lesson=ai-assistance">AI Assistance</a></li>
+                            <li data-unit="0"><a href="./tutorial.html?lesson=summary">Summary</a></li>
+                        <li data-unit="1" class="unit-divider unit-title"><a href="#">Unit 1: Periapical Lesion</a></li>
+                            <li data-unit="1"><a href="./case.html">Case 1</a></li>
+                            <li data-unit="1"><a href="./case.html">Case 2</a></li>
+                            <li data-unit="1"><a href="./case.html">Case 3</a></li>
+                            <li data-unit="1"><a href="./case.html">Case 4</a></li>
+                            <li data-unit="1"><a href="./case.html">Case 5</a></li>
+                            <li data-unit="1"><a href="./case.html">Case 6</a></li>
+                            <li data-unit="1"><a href="./case.html">Case 7</a></li>
+                            <li data-unit="1"><a href="./case.html">Case 8</a></li>
+                            <li data-unit="1"><a href="./case.html">Case 9</a></li>
+                            <li data-unit="1"><a href="./case.html">Case 10</a></li>
+                        <li data-unit="1" class="unit-divider"><a href="./case.html">Unit 1: Practice</a></li>
+                        <li data-unit="1" class="unit-divider"><a href="./case.html">Unit 1: Test</a></li>
+                        <li class="unit-divider"></li>
+                        <li data-unit="2" class="unit-divider unit-title"><a href="#">Unit 2: Carious Lesion</a></li>
+                            <li data-unit="2"><a href="./case.html">Case 1</a></li>
+                            <li data-unit="2"><a href="./case.html">Case 2</a></li>
+                            <li data-unit="2"><a href="./case.html">Case 3</a></li>
+                            <li data-unit="2"><a href="./case.html">Case 4</a></li>
+                            <li data-unit="2"><a href="./case.html">Case 5</a></li>
+                            <li data-unit="2"><a href="./case.html">Case 6</a></li>
+                            <li data-unit="2"><a href="./case.html">Case 7</a></li>
+                            <li data-unit="2"><a href="./case.html">Case 8</a></li>
+                            <li data-unit="2"><a href="./case.html">Case 9</a></li>
+                            <li data-unit="2"><a href="./case.html">Case 10</a></li>
+                        <li data-unit="2" class="unit-divider"><a href="./case.html">Unit 2: Practice</a></li>
+                        <li data-unit="2" class="unit-divider"><a href="./case.html">Unit 2: Test</a></li>
+                        <li class="unit-divider"></li>
+                        <li data-unit="3" class="unit-divider unit-title"><a href="#">Unit 3: Periodontal Lesion</a></li>
+                            <li data-unit="3"><a href="./case.html">Case 1</a></li>
+                            <li data-unit="3"><a href="./case.html">Case 2</a></li>
+                            <li data-unit="3"><a href="./case.html">Case 3</a></li>
+                            <li data-unit="3"><a href="./case.html">Case 4</a></li>
+                            <li data-unit="3"><a href="./case.html">Case 5</a></li>
+                            <li data-unit="3"><a href="./case.html">Case 6</a></li>
+                            <li data-unit="3"><a href="./case.html">Case 7</a></li>
+                            <li data-unit="3"><a href="./case.html">Case 8</a></li>
+                            <li data-unit="3"><a href="./case.html">Case 9</a></li>
+                            <li data-unit="3"><a href="./case.html">Case 10</a></li>
+                        <li data-unit="3" class="unit-divider"><a href="./case.html">Unit 3: Practice</a></li>
+                        <li data-unit="3" class="unit-divider"><a href="./case.html">Unit 3: Test</a></li>
+                        <li class="unit-divider"></li>
+                        <li data-unit="4" class="unit-divider unit-title"><a href="#">Unit 4: Cystic Lesion</a></li>
+                            <li data-unit="4"><a href="./case.html">Case 1</a></li>
+                            <li data-unit="4"><a href="./case.html">Case 2</a></li>
+                            <li data-unit="4"><a href="./case.html">Case 3</a></li>
+                            <li data-unit="4"><a href="./case.html">Case 4</a></li>
+                            <li data-unit="4"><a href="./case.html">Case 5</a></li>
+                            <li data-unit="4"><a href="./case.html">Case 6</a></li>
+                            <li data-unit="4"><a href="./case.html">Case 7</a></li>
+                            <li data-unit="4"><a href="./case.html">Case 8</a></li>
+                            <li data-unit="4"><a href="./case.html">Case 9</a></li>
+                            <li data-unit="4"><a href="./case.html">Case 10</a></li>
+                        <li data-unit="4" class="unit-divider"><a href="./case.html">Unit 4: Practice</a></li>
+                        <li data-unit="4" class="unit-divider"><a href="./case.html">Unit 4: Test</a></li>
+                        <li class="unit-divider"></li>
+                        <li data-unit="5" class="unit-divider unit-title"><a href="#">Unit 5: Traumatic Lesion</a></li>
+                            <li data-unit="5"><a href="./case.html">Case 1</a></li>
+                            <li data-unit="5"><a href="./case.html">Case 2</a></li>
+                            <li data-unit="5"><a href="./case.html">Case 3</a></li>
+                            <li data-unit="5"><a href="./case.html">Case 4</a></li>
+                            <li data-unit="5"><a href="./case.html">Case 5</a></li>
+                            <li data-unit="5"><a href="./case.html">Case 6</a></li>
+                            <li data-unit="5"><a href="./case.html">Case 7</a></li>
+                            <li data-unit="5"><a href="./case.html">Case 8</a></li>
+                            <li data-unit="5"><a href="./case.html">Case 9</a></li>
+                            <li data-unit="5"><a href="./case.html">Case 10</a></li>
+                        <li data-unit="5" class="unit-divider"><a href="./case.html">Unit 5: Practice</a></li>
+                        <li data-unit="5" class="unit-divider"><a href="./case.html">Unit 5: Test</a></li>
+                        <li class="unit-divider"></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="card practice-all-card" id="practiceAllPanel">
+            <h3>Practice All</h3>
+            <p class="subtext">Get a question from any lesion type you've unlocked so far, picked based on your personal mastery of each one.</p>
+            <button class="primary" id="practiceAllBtn" type="button">Practice All</button>
+
+            <div class="unit-mastery">
+                <h3>Unit Mastery</h3>
+                <ul class="unit-mastery-list" id="unitMasteryList">
+                    <li>Periapical Lesion - <span class="unit-mastery-value is-empty">N/A</span></li>
+                    <li>Carious Lesion - <span class="unit-mastery-value is-empty">N/A</span></li>
+                    <li>Periodontal Lesion - <span class="unit-mastery-value is-empty">N/A</span></li>
+                    <li>Cystic Lesion - <span class="unit-mastery-value is-empty">N/A</span></li>
+                    <li>Traumatic Lesion - <span class="unit-mastery-value is-empty">N/A</span></li>
+                </ul>
+            </div>
+        </section>
+        </div>
+    </main>
+
+    <script src="js/shared/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
