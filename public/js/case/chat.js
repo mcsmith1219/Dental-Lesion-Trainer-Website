@@ -1,9 +1,8 @@
 // AI assistant chat panel.
-const CHAT_PLACEHOLDER_REPLIES = [
-  "This is a placeholder for now, I'll implement the actual AI reasoning later. - Matthew"
-];
+const CHAT_WELCOME = "Hi, I'm your AI Dental assistant! If you have any questions about this case, feel free to ask!";
 
-let chatReplyIndex = 0;
+let chatHistory = [];
+let chatPending = false;
 
 function appendChatMessage(text, sender) {
   const message = document.createElement("div");
@@ -11,23 +10,65 @@ function appendChatMessage(text, sender) {
   message.textContent = text;
   chatMessages.appendChild(message);
   chatMessages.scrollTop = chatMessages.scrollHeight;
+  return message;
 }
 
-function sendChatMessage() {
-  const text = chatInput.value.trim();
+function resetChat() {
+  chatHistory = [];
+  chatMessages.innerHTML = "";
+  appendChatMessage(CHAT_WELCOME, "ai");
+}
 
-  if (!text) {
+function setChatPending(pending) {
+  chatPending = pending;
+  chatInput.disabled = pending;
+  chatSendBtn.disabled = pending;
+}
+
+async function sendChatMessage() {
+  const text = chatInput.value.trim();
+  const currentCase = cases[currentCaseIndex];
+
+  if (!text || chatPending || !currentCase) {
     return;
   }
 
   appendChatMessage(text, "user");
   chatInput.value = "";
+  const replyBubble = appendChatMessage("Thinking...", "ai");
+  replyBubble.classList.add("is-pending");
+  setChatPending(true);
 
-  window.setTimeout(function () {
-    const reply = CHAT_PLACEHOLDER_REPLIES[chatReplyIndex % CHAT_PLACEHOLDER_REPLIES.length];
-    chatReplyIndex += 1;
-    appendChatMessage(reply, "ai");
-  }, 400);
+  try {
+    const response = await fetch("/api/chat", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        caseId: currentCase.caseId,
+        message: text,
+        history: chatHistory,
+        partTwoComplete: partTwoComplete
+      })
+    });
+    const data = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      throw new Error(data.error || "The AI assistant couldn't answer right now. Please try again.");
+    }
+
+    if (replyBubble.isConnected) {
+      replyBubble.textContent = data.reply;
+      chatHistory.push({role: "user", content: text}, {role: "assistant", content: data.reply});
+    }
+  } catch (error) {
+    replyBubble.textContent = error.message;
+    replyBubble.classList.add("is-error");
+  } finally {
+    replyBubble.classList.remove("is-pending");
+    setChatPending(false);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    chatInput.focus();
+  }
 }
 
 chatSendBtn.addEventListener("click", sendChatMessage);
@@ -37,4 +78,4 @@ chatInput.addEventListener("keydown", function (event) {
   }
 });
 
-appendChatMessage("Hi, I'm your AI Dental assistant! If you have any questions about this case, feel free to ask!", "ai");
+resetChat();

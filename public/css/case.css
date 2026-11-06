@@ -207,6 +207,16 @@
   border-bottom-right-radius: 4px;
 }
 
+.chat-message.is-pending {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.chat-message.is-error {
+  background: var(--danger-bg);
+  color: var(--danger-text);
+}
+
 .chat-input-row {
   display: flex;
   gap: 8px;

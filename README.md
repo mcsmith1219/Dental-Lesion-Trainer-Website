@@ -12,14 +12,15 @@ This is an early-stage prototype with a working front end (HTML/CSS/JS) and an E
 Dental-Lesion-Trainer-Website/
 ├── server/
 │   ├── server.js                 # Entry point: middleware, mounts the routers, starts listening
-│   ├── config.js                 # Port, data file paths, unit -> lesion category map
+│   ├── config.js                 # Port, data file paths, unit -> lesion category map, AI model settings
 │   ├── routes/                   # One Express router per API area (auth, users, cases, practice,
-│   │                             #   tests, progress, skills, slideshow)
+│   │                             #   tests, progress, skills, slideshow, chat)
 │   ├── services/
 │   │   ├── bkt.js                # Bayesian Knowledge Tracing model
 │   │   ├── mastery.js            # Applies a BKT update to a student's stored mastery
 │   │   ├── units.js              # Unit test status and the unit unlock rule
-│   │   └── case-selection.js     # Mastery-driven case pick for practice and tests
+│   │   ├── case-selection.js     # Mastery-driven case pick for practice and tests
+│   │   └── chat.js               # AI tutor replies from the local Ollama model
 │   ├── store/                    # All reading/writing of the CSV files in data/ (csv.js = shared parser)
 │   └── db/                       # Optional PostgreSQL scripts (not used by the running app)
 │       ├── database.sql          # Table definitions
@@ -56,7 +57,7 @@ Dental-Lesion-Trainer-Website/
 │   │   │   ├── xray-tools.js     # Selection box and ruler
 │   │   │   ├── zoom.js           # Enlarge/shrink the x-ray
 │   │   │   ├── case-flow.js      # Part 1/Part 2, hints, next case, practice and tests
-│   │   │   ├── chat.js           # AI assistant chat panel (placeholder)
+│   │   │   ├── chat.js           # AI assistant chat panel (talks to /api/chat)
 │   │   │   └── main.js           # Startup; must load last
 │   │   ├── dashboard.js          # Dashboard case list, badges, practice, tests and mastery
 │   │   ├── slideshow.js          # Home page slideshow
@@ -92,13 +93,13 @@ Dental-Lesion-Trainer-Website/
 - **Bayesian Knowledge Tracing (BKT)** — after each diagnosis answer, the server updates a running mastery estimate (0–1) per student per lesion type. See [Bayesian Knowledge Tracing](#bayesian-knowledge-tracing) below
 - **Tutorial** — five short lessons (Introduction, Tools, Practice, AI Assistance, Summary), each with a video and a question
 - **Home slideshow** — cycles through every image in `public/images/slide-show-images/` in filename order (use `01-`, `02-`… prefixes to set the order); falls back to `train_0.png` if the folder is empty
+- **AI tutor chat** — in Part 2 of each case, students can ask questions about the x-ray. Replies come from a local model (set to `qwen3.5:4b` through Ollama) that sees the x-ray and the case's hints. It won't name the diagnosis until the student has submitted their answer, then it can explain it. The chat resets for each new case
 - **Resources page** — supplementary reference material
 - **Accounts** — sign up (with an instructor access code), log in and log out. The top-right nav shows "Login | Sign Up" when signed out, and the username and a "Sign Out" link when signed in
 
 ## WIP
 
 - **Instructor dashboard** — for reviewing student progress, resetting attempts, and adding new lectures/cases
-- **AI chatbot** — currently a placeholder reply in `public/js/case/chat.js`; not yet backed by a real model
 - **Tutorial videos** — lessons still use placeholder video IDs (`VIDEO_ID_...` in `public/js/tutorial-lesson.js`)
 - **Password reset** — the form exists, but sending a reset email is not implemented
 - **Security** — passwords are stored in plain text in `data/users.csv` and the sign-up access code is hard-coded in `public/js/signup.js`; both need replacing before real use
@@ -108,6 +109,7 @@ Dental-Lesion-Trainer-Website/
 ### Prerequisites
 
 - Node.js and npm — <https://nodejs.org/en/download/>
+- Ollama, for the AI tutor chat — <https://ollama.com/download> (the rest of the site works without it)
 
 ### 1. Clone the repository
 
@@ -122,7 +124,15 @@ cd Dental-Lesion-Trainer-Website
 npm install
 ```
 
-### 3. Start the server
+### 3. Download the AI model
+
+```bash
+ollama pull qwen3.5:4b
+```
+
+Ollama must be running while you use the chat (it starts automatically after installing on Windows). The model needs about 3.5 GB of disk space and runs best on a GPU with 6 GB or more of memory. The first reply after starting takes longer (around 20 seconds) while the model loads; later replies take a few seconds.
+
+### 4. Start the server
 
 ```bash
 npm start

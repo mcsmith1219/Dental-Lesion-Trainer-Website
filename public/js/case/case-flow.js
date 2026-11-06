@@ -70,6 +70,7 @@ function loadCase() {
   updateZoomTools();
   renderAnswers(currentCase.choices);
   renderHints(currentCase.hints);
+  resetChat();
 }
 
 function renderAnswers(choices) {

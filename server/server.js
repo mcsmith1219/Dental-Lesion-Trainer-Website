@@ -11,6 +11,7 @@ const testsRouter = require('./routes/tests');
 const {progressRouter, attemptsRouter, statsRouter} = require('./routes/progress');
 const skillsRouter = require('./routes/skills');
 const slideshowRouter = require('./routes/slideshow');
+const chatRouter = require('./routes/chat');
 
 const app = express();
 
@@ -38,6 +39,7 @@ app.use('/api/skills', skillsRouter);
 app.use('/api/attempts', attemptsRouter);
 app.use('/api/stats', statsRouter);
 app.use('/api/slideshow-images', slideshowRouter);
+app.use('/api/chat', chatRouter);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

@@ -19,6 +19,12 @@ module.exports = {
   SLIDESHOW_DIR: path.join(PUBLIC_DIR, 'images', 'slide-show-images'),
   SLIDESHOW_EXTENSIONS: new Set(['.png', '.jpg', '.jpeg', '.gif', '.webp', '.avif', '.svg']),
 
+  OLLAMA_URL: process.env.OLLAMA_URL || 'http://localhost:11434',
+  OLLAMA_MODEL: process.env.OLLAMA_MODEL || 'qwen3.5:4b',
+  CHAT_TIMEOUT_MS: 120000,
+  CHAT_HISTORY_LIMIT: 10,
+  CHAT_MESSAGE_MAX_LENGTH: 1000,
+
   UNIT_CATEGORIES: {
     1: 'Periapical Lesion',
     2: 'Carious Lesion',
